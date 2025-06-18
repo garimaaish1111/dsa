@@ -1,0 +1,39 @@
+public class TwoMissingNumbers {
+    public static int[] findTwoMissingNumbers(int[] nums, int n) {
+        int totalXor = 0;
+        for (int i = 1; i <= n; i++) {
+            totalXor ^= i;
+        }
+        for (int num : nums) {
+            totalXor ^= num;
+        }
+        
+        // Find the rightmost set bit
+        int rightmostSetBit = totalXor & -totalXor;
+        
+        int x = 0, y = 0;
+        for (int i = 1; i <= n; i++) {
+            if ((i & rightmostSetBit) != 0) {
+                x ^= i;
+            } else {
+                y ^= i;
+            }
+        }
+        for (int num : nums) {
+            if ((num & rightmostSetBit) != 0) {
+                x ^= num;
+            } else {
+                y ^= num;
+            }
+        }
+        
+        return new int[]{x, y};
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 3, 5, 6};
+        int n = 6;
+        int[] result = findTwoMissingNumbers(nums, n);
+        System.out.println("Two missing numbers: " + result[0] + " and " + result[1]);
+    }
+}
