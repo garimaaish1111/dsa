@@ -1,0 +1,12 @@
+public class KthBitLSB {
+    public static boolean isKthBitSetLSB(int num, int k) {
+        int mask = 1 << (k - 1);
+        return (num & mask) != 0;
+    }
+
+    public static void main(String[] args) {
+        int num = 5; // 0101
+        int k = 1;
+        System.out.println("Is " + k + "th bit set in " + num + " (LSB first)? " + isKthBitSetLSB(num, k));
+    }
+}
