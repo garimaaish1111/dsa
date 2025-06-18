@@ -1,0 +1,23 @@
+public class CountSetBitsRange {
+    public static int countSetBitsRange(int n) {
+        int count = 0;
+        for (int i = 1; i <= n; i++) {
+            count += countSetBits(i);
+        }
+        return count;
+    }
+    
+    private static int countSetBits(int num) {
+        int count = 0;
+        while (num > 0) {
+            count += num & 1;
+            num >>= 1;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        System.out.println("Total set bits from 1 to " + n + ": " + countSetBitsRange(n));
+    }
+}
